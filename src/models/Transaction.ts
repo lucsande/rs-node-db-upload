@@ -1,4 +1,4 @@
-import { Entity, PrimaryGeneratedColumn, Column } from 'typeorm';
+import { Entity, PrimaryGeneratedColumn, Column, CreateDateColumn } from 'typeorm';
 
 @Entity('transactions')
 class Transaction {
@@ -11,16 +11,16 @@ class Transaction {
   @Column()
   type: 'income' | 'outcome';
   
-  @Column()
+  @Column('decimal')
   value: number;
   
   @Column()
   category_id: string;
   
-  @Column('timestamp with local time zone')
+  @Column('timestamp with time zone')
   created_at: Date;
   
-  @Column('timestamp with local time zone')
+  @Column('timestamp with time zone')
   updated_at: Date;
 }
 

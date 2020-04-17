@@ -31,7 +31,7 @@ export class CreateTransactionsAndCategories1586950017328
           },
           {
             name: 'value',
-            type: 'numeric',
+            type: 'float',
             isNullable: false,
           },
           {
@@ -105,7 +105,7 @@ export class CreateTransactionsAndCategories1586950017328
       'transactions',
       'categoriesForeignKeyOnTransactions',
     );
-    await queryRunner.dropTable('category');
+    await queryRunner.dropTable('categories');
     await queryRunner.dropTable('transactions');
   }
 }

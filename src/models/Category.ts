@@ -1,6 +1,6 @@
 import { Entity, PrimaryGeneratedColumn, Column } from 'typeorm';
 
-@Entity('transactions')
+@Entity('categories')
 class Category {
   @PrimaryGeneratedColumn('uuid')
   id: string;
@@ -8,10 +8,10 @@ class Category {
   @Column()
   title: string;
 
-  @Column()
+  @Column('timestamp with time zone')
   created_at: Date;
 
-  @Column()
+  @Column('timestamp with time zone')
   updated_at: Date;
 }
 
