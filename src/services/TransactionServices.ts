@@ -73,9 +73,14 @@ class TransactionServices {
   public async import(filePath: string): Promise<Transaction[]> {
     const data = await fs.promises.readFile(filePath);
     const rows = await neatCsv(data);
+    const trimmedRows = rows.map(row =>
+      JSON.parse(JSON.stringify(row).replace(/\" /g, '"')),
+    );
     const createdTransactions = [] as Transaction[];
 
-    for (const row of rows) {
+    console.log(trimmedRows);
+
+    for (const row of trimmedRows) {
       const trans = { ...row, value: parseFloat(row.value) } as any;
       const createdTransaction = await this.create(trans);
 

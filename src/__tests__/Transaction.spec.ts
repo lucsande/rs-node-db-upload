@@ -197,8 +197,7 @@ describe('Transaction', () => {
 
     const importCSV = path.resolve(__dirname, 'import_template.csv');
 
-    const Requestresponse = await request(app).post('/transactions/import').attach('file', importCSV);
-    console.log('fullfilled promise, const Requestresponse is:', Requestresponse)
+    await request(app).post('/transactions/import').attach('file', importCSV);
 
     const transactions = await transactionsRepository.find();
     const categories = await categoriesRepository.find();
