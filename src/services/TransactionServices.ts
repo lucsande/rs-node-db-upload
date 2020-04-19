@@ -75,7 +75,6 @@ class TransactionServices {
     const rows = await neatCsv(data);
     const createdTransactions = [] as Transaction[];
 
-
     for (const row of rows) {
       const trans = { ...row, value: parseFloat(row.value) } as any;
       const createdTransaction = await this.create(trans);
@@ -87,8 +86,6 @@ class TransactionServices {
 
     return createdTransactions;
   }
-
-  
 
   public async delete(id: string): Promise<void> {
     const transRepo = this.createTransRepo();
