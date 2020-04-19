@@ -1,14 +1,11 @@
 import { getCustomRepository } from 'typeorm';
-import fs, { ReadStream } from 'fs';
+import fs from 'fs';
 import neatCsv from 'neat-csv';
-import { promisify } from 'util';
 
 import AppError from '../errors/AppError';
 import Transaction from '../models/Transaction';
 import CategoryServices from './CategoryServices';
 import TransactionsRepository from '../repositories/TransactionsRepository';
-
-const readFileAsync = promisify(fs.readFile);
 
 interface Balance {
   income: number;
@@ -78,6 +75,7 @@ class TransactionServices {
     const rows = await neatCsv(data);
     const createdTransactions = [] as Transaction[];
 
+
     for (const row of rows) {
       const trans = { ...row, value: parseFloat(row.value) } as any;
       const createdTransaction = await this.create(trans);
@@ -89,6 +87,8 @@ class TransactionServices {
 
     return createdTransactions;
   }
+
+  
 
   public async delete(id: string): Promise<void> {
     const transRepo = this.createTransRepo();
