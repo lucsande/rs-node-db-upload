@@ -2,3 +2,5 @@
 node_modules
 dist
 tsconfig.json
+jest.config.json
+prettier.config.json
